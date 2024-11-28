@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from urllib.parse import urlparse
 from notion_client import Client
 
 # Notion API Setup
@@ -18,6 +19,7 @@ def scrape_google_links(query):
     
     # Extract top 5 search result links
     links = []
+    domains = set()  # To track unique domains
     for a in soup.select("a"):
         href = a.get("href")
         if href and href.startswith("/url?q="):
@@ -29,9 +31,15 @@ def scrape_google_links(query):
             if not link.startswith("http"):  # Skip non-HTTP links
                 continue
             
-            links.append(link)
-        if len(links) == 5:  # Stop after collecting 5 valid links
-            break
+            # Extract domain and ensure uniqueness
+            domain = urlparse(link).netloc
+            if domain not in domains:
+                domains.add(domain)
+                links.append(link)
+            
+            # Stop after collecting 5 unique links
+            if len(links) == 5:
+                break
     return links
 
 # Function to find a Notion page by its name
