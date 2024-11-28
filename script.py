@@ -85,16 +85,16 @@ def add_links_to_page(page_id, links):
 if __name__ == "__main__":
     # Define resource categories and their search queries
     resources = {
-        "Courses": "Python free course",
-        "YouTube Videos": "Python YouTube.com"
-        "Books": "Python book",
-        "PDFs": "Python PDF",
-        "Blogs": "Python article",
-        "Podcasts": "Python podcast episode YouTube.com",
-        "Apps": "Python learning apps play store",
-        "Tiktok Shorts": "Python tips Tiktok.com"
-        "Interactive Tutorials": "Interactive Python tutorials",
-        "GitHub Tutorials": "Python tutorial GitHub"
+        "Courses": "RxJava android studio free course",
+        #"YouTube Videos": "Python YouTube.com",
+        "google books": "RxJava android studio googlebooks.com",
+        "PDFs": "RxJava android studio PDF",
+        "geeks for geeks": "RxJava geeksforgeeks.com",
+        #"Podcasts": "Python podcast episode YouTube.com",
+        #"Apps": "Python learning apps play store",
+        "Tiktok": "RxJava android studio Tiktok.com discover",
+        "Medium": "RxJava android studio medium.com",
+        "CSDN": "RxJava android studio CSDN.com"
     }
 
     for page_name, query in resources.items():
