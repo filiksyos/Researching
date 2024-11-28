@@ -3,7 +3,7 @@ name: Run Script on Commit
 on:
   push:
     branches:
-      - main
+      - '**'
 
 jobs:
   run-script:
