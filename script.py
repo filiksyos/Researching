@@ -22,8 +22,15 @@ def scrape_google_links(query):
         href = a.get("href")
         if href and href.startswith("/url?q="):
             link = href.split("/url?q=")[1].split("&")[0]
+            
+            # Filter out unwanted links (e.g., Google Maps or invalid URLs)
+            if "maps.google.com" in link or "google.com/maps" in link:
+                continue  # Skip Google Maps links
+            if not link.startswith("http"):  # Skip non-HTTP links
+                continue
+            
             links.append(link)
-        if len(links) == 5:
+        if len(links) == 5:  # Stop after collecting 5 valid links
             break
     return links
 
