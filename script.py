@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-from urllib.parse import urlparse
 from notion_client import Client
 
 # Notion API Setup
@@ -19,7 +18,6 @@ def scrape_google_links(query):
     
     # Extract top 5 search result links
     links = []
-    domains = set()  # To track unique domains
     for a in soup.select("a"):
         href = a.get("href")
         if href and href.startswith("/url?q="):
@@ -31,13 +29,9 @@ def scrape_google_links(query):
             if not link.startswith("http"):  # Skip non-HTTP links
                 continue
             
-            # Extract domain and ensure uniqueness
-            domain = urlparse(link).netloc
-            if domain not in domains:
-                domains.add(domain)
-                links.append(link)
+            links.append(link)
             
-            # Stop after collecting 5 unique links
+            # Stop after collecting 5 links
             if len(links) == 5:
                 break
     return links
@@ -91,16 +85,16 @@ def add_links_to_page(page_id, links):
 if __name__ == "__main__":
     # Define resource categories and their search queries
     resources = {
-        "Courses": "Python course",
-        "YouTube Videos": "Python YouTube video",
+        "Courses": "Python free course",
+        "YouTube Videos": "Python YouTube.com"
         "Books": "Python book",
         "PDFs": "Python PDF",
-        "Blogs": "Python programming blogs",
-        "Podcasts": "Python podcasts",
-        "Apps": "Python learning apps",
-        "Tiktok Shorts": "Python tips Tiktok shorts",
+        "Blogs": "Python article",
+        "Podcasts": "Python podcast episode YouTube.com",
+        "Apps": "Python learning apps play store",
+        "Tiktok Shorts": "Python tips Tiktok.com"
         "Interactive Tutorials": "Interactive Python tutorials",
-        "GitHub Tutorials": "Python GitHub projects tutorials"
+        "GitHub Tutorials": "Python tutorial GitHub"
     }
 
     for page_name, query in resources.items():
