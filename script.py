@@ -87,6 +87,12 @@ if __name__ == "__main__":
         "YouTube Videos": "Python YouTube video",
         "Books": "Python book",
         "PDFs": "Python PDF",
+        "Blogs": "Python programming blogs",
+        "Podcasts": "Python podcasts",
+        "Apps": "Python learning apps",
+        "Tiktok Shorts": "Python tips Tiktok shorts",
+        "Interactive Tutorials": "Interactive Python tutorials",
+        "GitHub Tutorials": "Python GitHub projects tutorials"
     }
 
     for page_name, query in resources.items():
